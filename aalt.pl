@@ -97,9 +97,9 @@ sub _default {
 #    say "Channel: $channel";
     while ($args->[-1] =~ m/($re_url)/g) {
         my $url = $1;
-        say "DEBUG urL: '$url'";
+#        say "DEBUG urL: '$url'";
         if (exists $count{$url}) {
-            say "DEBUG: $url is aaalt";
+#            say "DEBUG: $url is aaalt";
             my $post = '!' x $count{$url}++;
             my $pre  = 'a' x int(0.5 + log(time - $timestamp{$url}));
             $irc->yield(privmsg => $channel, $pre . 'lt' . $post);
