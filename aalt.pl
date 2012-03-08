@@ -5,7 +5,7 @@ use POE qw(Component::IRC Component::IRC::Plugin::AutoJoin);
 use Data::Dumper;
 use lib 'lib';
 use MLDBM;
-use POSIX qw( :fcntl_h);
+use POSIX qw(ceil :fcntl_h);
 use Regexp::Common qw/ URI /;
 
 
@@ -101,7 +101,7 @@ sub _default {
         if (exists $count{$url}) {
 #            say "DEBUG: $url is aaalt";
             my $post = '!' x $count{$url}++;
-            my $pre  = 'a' x int(0.5 + log(time - $timestamp{$url}));
+            my $pre  = 'a' x ceil(0.5 + log(time - $timestamp{$url}));
             $irc->yield(privmsg => $channel, $pre . 'lt' . $post);
         } else {
             $count{$url}     = 1;
